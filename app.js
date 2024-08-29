@@ -4,15 +4,21 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const app = express();
 const port = process.env.PORT || 6000;
+console.log('DB_HOST:', process.env.DB_HOST);
+console.log('USERNAME:', process.env.DB_USERNAME);
+console.log('PASSWORD:', process.env.DB_PASSWORD);
+console.log('DB_NAME:', process.env.DB_NAME);
+
 
 app.use(bodyParser.json());
 
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
-    user: process.env.USERNAME,
-    password: process.env.PASSWORD,
-    database: process.env.DB_NAME
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
 });
+
 
 db.connect(err => {
     if (err) {
